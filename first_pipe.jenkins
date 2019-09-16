@@ -7,18 +7,18 @@ pipeline {
         label 'master'
         }
     options {
-        buildDiscarder(logRotator(numToKeepStr: '100', artifactNumToKeepStr: '0'))
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '0'))
         timestamps()
     }
     stages {
-        stage("Get changed files") {
+        stage("Hostname") {
             steps {
-                sh "FILES=$(git diff-tree --no-commit-id --name-only -r ${GIT_COMMIT}")
+                sh 'hostname -f'
             }
         }
-        stage("Sort it out") {
+        stage("Date") {
             steps {
-                sh 'echo $FILES'
+                sh 'date'
             }
         }
     }
